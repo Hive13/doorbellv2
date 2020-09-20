@@ -3,10 +3,11 @@ from flask import request
 import xmltodict
 import time
 import simpleaudio as sa
+from subprocess import call
 
-api = Flask(__name__)
+app = Flask(__name__)
 
-@api.route('/event', methods=['POST'])
+@app.route('/event', methods=['POST'])
 def phone_event():
     xmlevent = xmltodict.parse(request.data)
     if 'IncomingCallEvent' in xmlevent['PolycomIPPhone']:
@@ -19,4 +20,4 @@ def phone_event():
     return 'Accepted'
 
 if __name__ == '__main__':
-    api.run(debug=True, host='0.0.0.0', port=7466)
+    app.run(debug=True, host='0.0.0.0', port=7466)
