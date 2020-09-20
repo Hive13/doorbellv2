@@ -1,0 +1,11 @@
+[Unit]
+Description=Hive13 Doorbell
+After=multi-user.target
+
+[Service]
+Type=idle
+ExecStartPre=/opt/doorbellv2/preinit.sh
+ExecStart=/usr/bin/python3 /opt/doorbellv2/doorbell.py
+
+[Install]
+WantedBy=multi-user.target
